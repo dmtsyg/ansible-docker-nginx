@@ -1,0 +1,2 @@
+# ansible-docker-nginx-test
+The ansible playbook that: runs the docker container on the local machine with ssh, install nginx there create the site with one page, where it would output the number of CPU cores, memory and disk space in this container.

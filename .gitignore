@@ -1,0 +1,10 @@
+log/*
+test/*
+.zsh
+*.retry
+vault.yml
+*.vault
+*.key
+.old
+*.bak
+Pipfile.lock
