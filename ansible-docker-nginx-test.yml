@@ -1,0 +1,16 @@
+---
+- hosts:
+  - localhost
+  become: no
+  vars:
+    docker_image_name: 'eg_sshd'
+    docker_container_name: '{{ docker_image_name }}'
+    docker_root_password: 'superpwd'
+    docker_ssh_port: '22'
+  roles:
+    - docker_cont_ssh
+- hosts:
+  - eg_sshd
+  roles:
+    - nginx_info
+...

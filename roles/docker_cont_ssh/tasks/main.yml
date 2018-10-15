@@ -1,0 +1,25 @@
+---
+- name: copy Dockerfile
+  template:
+    src: 'Dockerfile'
+    dest: '{{ docker_image_dir }}'
+    backup: yes
+
+- name: build image
+  docker_image:
+     path: '{{ docker_image_dir }}'
+     name: '{{ docker_image_name }}'
+
+- name: create container
+  docker_container:
+    name: '{{ docker_container_name }}'
+    image: '{{ docker_image_name }}'
+    state: started
+
+- name: add container to inventory
+  add_host:
+    name: '{{ docker_container_name }}'
+    ansible_user: root
+    ansible_connection: docker
+    ansible_python_interpreter: '/usr/bin/python3'
+...

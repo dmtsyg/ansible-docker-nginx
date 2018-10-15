@@ -1,0 +1,7 @@
+---
+docker_image_name: 'eg_sshd'
+docker_image_dir: '~/docker_img/{{ docker_image_name }}/'
+docker_container_name: '{{ docker_image_name }}'
+docker_root_password: 'p@$$w0rd'
+docker_ssh_port: 22
+...

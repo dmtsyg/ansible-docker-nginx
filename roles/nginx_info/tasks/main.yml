@@ -1,0 +1,44 @@
+---
+- name: install fcgiwrap
+  apt:
+    name: fcgiwrap
+    state: latest
+
+- name: enabling fcgiwrap
+  service:
+    name: fcgiwrap
+    enabled: yes
+    state: started
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+
+- name: copy default config
+  copy:
+    src: 'default'
+    dest: '/etc/nginx/sites-available/default'
+    mode: 0644
+    backup: yes
+
+- name: copy script
+  copy:
+    src: 'SysInfo.sh'
+    dest: '/var/www/SysInfo.sh'
+    owner: 'root'
+    group: 'www-data'
+    mode: 0754
+    backup: yes
+
+- name: enabling nginx
+  service:
+    name: nginx
+    enabled: yes
+    state: reloaded
+
+- name: restart nginx
+  command: 'service nginx restart'
+  args:
+    warn: False
+...

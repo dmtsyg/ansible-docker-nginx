@@ -1,0 +1,10 @@
+####  server default
+server {
+    listen       80 default_server;
+    server_name  _;
+    location / {
+    fastcgi_pass unix:/var/run/fcgiwrap.socket;
+    include /etc/nginx/fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /var/www/SysInfo.sh;
+  }
+}
